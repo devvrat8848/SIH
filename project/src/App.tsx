@@ -8,10 +8,12 @@ import DigitizedRecords from './pages/DigitizedRecords';
 // About merged into HomePage
 import Login from './pages/Login';
 import { AuthProvider, useAuth } from './lib/auth/AuthProvider';
+import { supabase } from './lib/supabaseClient';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { session, loading } = useAuth();
   if (loading) return <div className="p-8 text-center">Loading...</div>;
+  if (!supabase) return <>{children}</>;  // Bypass auth if Supabase not configured
   if (!session) return <Login />;
   return <>{children}</>;
 };

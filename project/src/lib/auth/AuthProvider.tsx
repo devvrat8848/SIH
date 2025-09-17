@@ -13,15 +13,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!supabase) {
+      setLoading(false);
+      return;
+    }
+
     let mounted = true;
     const init = async () => {
-      const { data } = await supabase.auth.getSession();
+      const { data } = await supabase!.auth.getSession();
       if (!mounted) return;
       setSession(data.session);
       setLoading(false);
     };
     init();
-    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: sub } = supabase!.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
     return () => { mounted = false; sub.subscription.unsubscribe(); };
