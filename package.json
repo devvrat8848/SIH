@@ -2,17 +2,23 @@
   "name": "fraatlas0",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
+  "homepage": ".",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "react-router-dom": "^7.9.1"
+    "react-router-dom": "^7.0.1"
   },
   "devDependencies": {
+    "react-scripts": "5.0.1",
     "@types/react-router-dom": "^5.3.3"
   }
+  
 }
